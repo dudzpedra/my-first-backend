@@ -1,10 +1,12 @@
 const express = require('express')
 const app = express()
-
 app.use(express.json())
 
 const morgan = require('morgan')
 app.use(morgan('dev'))
+
+const cors = require('cors')
+app.use(cors())
 
 let persons = [
     {
@@ -64,10 +66,10 @@ app.delete('/api/persons/:id', (req, res) => {
     res.status(204).end()
 })
 
-const generateId = () => {
+/* const generateId = () => {
     const maxId = persons.length > 0 ? Math.max(...persons.map(p => p.id)) : 0
     return maxId + 1
-}
+} */
 
 const randomId = () => (Math.random() * 10000).toFixed(0)
 
