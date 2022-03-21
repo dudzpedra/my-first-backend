@@ -1,30 +1,31 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-const url = process.env.MONGODB_URI
+const url = process.env.MONGODB_URI;
 
-console.log('connecting to', url)
+console.log("connecting to", url);
 
-mongoose.connect(url)
-  .then(result => {
-    console.log('connected to MongoDB')
+mongoose
+  .connect(url)
+  .then((result) => {
+    console.log("connected to MongoDB");
   })
   .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message)
-  })
+    console.log("error connecting to MongoDB:", error.message);
+  });
 
-  const personSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      minlength: 3,
-      required: true
-    },
-    phone: {
-      type: String,
-      required: true,
-      minlength: 9,
-      maxlength: 9
-    }
-})
+const personSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    minlength: 3,
+    required: true,
+  },
+  phone: {
+    type: String,
+    required: true,
+    minlength: 9,
+    maxlength: 9,
+  },
+});
 
 /* noteSchema.set('toJSON', {
   transform: (document, returnedObject) => {
@@ -34,4 +35,4 @@ mongoose.connect(url)
   }
 }) */
 
-module.exports = mongoose.model('Person', personSchema)
+module.exports = mongoose.model("Person", personSchema);
